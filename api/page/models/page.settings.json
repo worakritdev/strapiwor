@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pages",
+  "info": {
+    "name": "page",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "string",
+      "unique": true
+    },
+    "fixSlug": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "indexPage": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "ogImage": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "parentPage": {
+      "model": "page"
+    },
+    "contents": {
+      "type": "dynamiczone",
+      "components": [
+        "page.text",
+        "page.image"
+      ]
+    }
+  }
+}
